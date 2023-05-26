@@ -1,0 +1,36 @@
+
+Homework 1
+
+```{r}
+a <- c(160.5, 170, 175, 180.5, 185)
+b <- c(190, 195, 200, 182.5, 165.5)
+c <- c(168.2, 173.8, 177.3, 196, 180)
+d <- c(162, 199, 176.1, 188, 194)
+e <- c(168, 193.9, 191, 173, 183)
+
+f <- c(a, b, c, d, e)
+
+peso_matrix <- matrix(f, byrow = TRUE, nrow = 5)
+
+name_month <- c("Enero", "Febrero", "Marzo", "Abril", "Mayo")
+name_person <- c("Amilcar", "Alexander", "Cristian", "Luis", "Joel")
+  
+colnames(peso_matrix) <- name_month
+rownames(peso_matrix) <- name_person
+
+peso_matrix
+
+prom_matrix <- rowMeans(peso_matrix)
+add_column <- cbind(peso_matrix, prom_matrix)
+
+prom_column <- colMeans(add_column)
+add_row <- rbind(add_column, prom_column)
+
+final_matrix <- add_row 
+
+final_matrix
+
+
+
+```
+
