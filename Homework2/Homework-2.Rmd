@@ -1,0 +1,78 @@
+Funciones en R
+
+Estructura de una funcion
+
+```{r}
+nombre_de_funcion <- function(par1, par2) {  #nombre de funcion, Argumentos
+  cuerpo                                     #operaciones internas
+  cuerpo
+  cuerpo
+  cuerpo
+  resultado                                  #construir el resultado 
+  return(resultado)
+}
+
+```
+
+Ejemplo de funcion, argumentos
+
+```{r}
+suma <- function(x, y) {
+  resultado <- x + y
+  return(resultado)
+}
+
+r <- suma(x=5, y=10)
+print(r)
+
+```
+Familia Apply
+
+```{r}
+
+apply(x, MARGIN, FUN)
+# x : matriz, dataframe, lista o vector.
+# MARGIN: 1 para operar sobre las filas y 2 para operar sobre las columnas.
+# FUN: Función que se aplica sobre filas o columnas.
+
+df = data.frame("NOMBRES" = c("Ana","Javiera","José","Juan","Miguel", "María"),
+                "LUGAR_ASISTIR" = c("Lugar1", "Lugar2", "Lugar1", "Lugar2", "Lugar1", "Lugar1"),
+                "DIAS_ASISTIDOS" = c(8,7,10,5,6,10),
+                "DIAS_TOTALES" = c(10,10,10,10,10,10))
+df
+apply(df[,c(3,4)], 2, mean)
+
+
+```
+lapply
+
+```{r}
+lapply(x, FUN)
+# x : matriz, dataframe, lista o vector.
+# FUN: Función que se aplica sobre filas o columnas.
+
+df
+
+lapply(df[,c(3,4)], mean)
+```
+
+sapply
+
+```{r}
+sapply(x, FUN)
+# x : matriz, dataframe, lista o vector.
+# FUN: Función que se aplica sobre filas o columnas.
+
+df
+sapply(df[,c(3,4)], mean)
+```
+
+vapply
+
+```{r}
+# Devuelve un vector con la longitud que tiene cada una de las listas introducidas como parámetro.
+
+df
+vapply(df, FUN = length, FUN.VALUE = 0L)
+```
+
