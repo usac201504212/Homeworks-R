@@ -1,0 +1,114 @@
+
+Homework 3
+
+Investigue cómo leer un archivo CSV desde R.
+
+Se puede utilizar esta funcion 'read.csv()' o 'read.csv2()' para 
+importar datos almacenados en formato CSV
+
+Lee el archivo CSV utilizando read.csv()
+datos <- read.csv("archivo.csv")
+
+Puedes asignar los datos leídos a una variable en R, en este caso se utiliza dataset_results como nombre de la variable.
+
+Una vez que hayas leído el archivo CSV, los datos se almacenarán en un objeto de tipo data.frame en R.
+
+Ejemplo
+```{r}
+library(gapminder)
+library(dplyr)
+
+archivo_csv <- "c:/users/Amilcar/downloads/primary_results.csv"
+
+dataset_results <- read.csv(archivo_csv)
+
+```
+
+
+Investigue acerca de la función select() de la paquetería de dplyr.
+
+Se utiliza para manipular y transformar datos.
+Esta funcion  select() se usa para seleccionar columnas especificas de un data frame.
+Los métodos son como nombres de columnas, rangos de columnas, condiciones lógicas.
+
+
+Ejemplos
+
+data es el data frame del cual deseas seleccionar columnas.
+columnas que deseas seleccionar.
+
+select(data, columnas)
+
+Seleccionar columnas por nombre:
+
+Seleccionar las columnas "nombre" y "edad" del data frame "datos"
+datos_seleccionados <- select(datos, nombre, edad)
+
+Seleccionar columnas utilizando rangos:
+
+Seleccionar columnas de "nombre" a "edad" del data frame "datos"
+datos_seleccionados <- select(datos, nombre:edad)
+
+Excluir columnas utilizando el operador de exclamación (!):
+
+Seleccionar todas las columnas excepto "genero" del data frame "datos"
+datos_seleccionados <- select(datos, !genero)
+
+Ejemplo
+```{r}
+datos_clases <- data.frame(cursos = c("Fisica", "Estadistica", "Matematicas"), codigo = c(25, 30, 35), puntos = c(5, 10, 15))
+
+datos_select <- select(datos_clases, cursos,puntos)
+```
+Homework 3
+
+```{r}
+library(gapminder)
+library(dplyr)
+
+archivo_csv <- "c:/users/Amilcar/downloads/primary_results.csv"
+
+dataset_results <- read.csv(archivo_csv)
+
+dataset_results
+
+#1
+
+dataset_results %>% 
+  filter(state == "Florida") 
+
+ #2.1
+
+dataset_results %>% 
+   filter(candidate == "Hillary Clinton" | candidate == "Donald Trump")
+ 
+ #2.2
+
+dataset_results %>% 
+   filter(party == "Democrat" , county == "Shelby")
+  
+#2.3
+
+dataset_results %>% 
+  filter(state == "Alabama" , votes > 15000)
+
+
+#3.1
+
+dataset_results %>% 
+   filter(state == "Texas" , county == "Denton")  %>% 
+   select(party, candidate, votes) %>%  
+   arrange(desc(votes))
+
+#4.1 
+
+dataset_results %>% 
+  filter(party == "Republican", candidate == "Ted Cruz", state == "Alaska")  %>%
+  mutate(vote_count = votes/fraction_votes) %>%
+  arrange(desc(vote_count))
+   
+
+```
+
+
+
